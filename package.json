@@ -18,24 +18,59 @@
   ],
   "icon": "./images/icon.png",
   "activationEvents": [
-    "onCommand:readNovel.constReadNovelStart"
+    "onCommand: constReadNovel.constReadNovelStart"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "vscode-plugin-demo"
+      "title": "const-read-novel configuration",
+      "properties": {
+        "constReadNovel.filePath": {
+          "type": "string",
+          "description": "The address of the book"
+        },
+        "constReadNovel.replaceMark": {
+          "type": "string",
+          "default": "/*$*/",
+          "description": "代码注释规则，程序会自动替换$为小说文字Code annotation rules, the program will replace $ to novel text"
+        }
+      }
     },
     "commands": [
       {
-        "command": "readNovel.constReadNovelStart",
-        "title": "constReadNovelStart8888"
+        "command": "constReadNovel.constReadNovelStart",
+        "title": "constReadNovelStart"
+      },
+      {
+        "command": "constReadNovel.ReadNovel_nextPage",
+        "title": "ReadNovel_nextPage"
+      },
+      {
+        "command": "constReadNovel.ReadNovel_prevPage",
+        "title": "ReadNovel_prevPage"
+      },
+      {
+        "command": "constReadNovel.ReadNovel_clear",
+        "title": "ReadNovel_clear"
       }
     ]
   },
   "keybindings": [
     {
-      "command": "extension.sayHello",
+      "command": "constReadNovel.ReadNovel_prevPage",
+      "key": "ctrl+alt+,",
+      "mac": "cmd+f10",
+      "when": "editorTextFocus"
+    },
+    {
+      "command": "constReadNovel.ReadNovel_nextPage",
+      "key": "ctrl+alt+.",
+      "mac": "cmd+f10",
+      "when": "editorTextFocus"
+    },
+    {
+      "command": "constReadNovel.ReadNovel_clear",
       "key": "ctrl+f10",
       "mac": "cmd+f10",
       "when": "editorTextFocus"
